@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const Navigation = () => {
   return (
     <>
-      <nav className="w-[1200px] px-8 mx-auto my-0">
+      <nav className="w-[1184px] px-2 mx-auto my-0 flex justify-center">
         <NavLink
           style={({ isActive }) => ({
             color: isActive ? "rgb(79, 70, 229)" : "white",

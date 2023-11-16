@@ -1,0 +1,8 @@
+.Car_list{
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.Car_item{
+  width: 274px;
+}

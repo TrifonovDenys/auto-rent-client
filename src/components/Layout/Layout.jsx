@@ -8,9 +8,11 @@ const Layout = () => {
     <>
       <Header />
       <main>
+        <div className="w-[1200px] px-2 mx-auto my-0">
         <Suspense fallback={`loading...`}>
           <Outlet />
         </Suspense>
+        </div>
       </main>
       <Footer />
     </>

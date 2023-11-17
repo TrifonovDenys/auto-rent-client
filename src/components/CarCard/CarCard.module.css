@@ -17,23 +17,63 @@
 }
 
 .img{
+  height: 268px;
+  object-fit: cover;
+}
+.svg{
+  position: absolute;
+  padding: 0;
+  z-index: 99;
+  color: transparent;
+  top: 14px;
+  right: 14px;
+  transition: color var(--transit);
 
+}
+.svg:hover, .svg:focus{
+  outline: none;
+  border: none;
 }
 .car_myp{
   color: #3470FF;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+  height: 24px;
+  /* text-overflow: ellipsis; */
+  overflow: hidden;
 }
 
 .car_myp span  {
   color: #121417;
 }
 
+.price{
+  margin-left: auto;
+}
+
+.support_text{
+  color: #121417;
+  opacity: 50%;
+  font-size: 12px;
+  line-height: 18px;
+  height: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.support_text span{
+  border-right: 1px solid #12141732;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
 .list{
   padding-right: 6px;
   display: flex;
   flex-wrap: wrap;
+  height: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .item{
@@ -58,6 +98,6 @@
   color: #FFFFFF;
   transform: var(--transit);
 }
-.button:hover{
-  background: #0B44CD
+.button:hover , .button:focus{
+  background: #0B44CD;
 }

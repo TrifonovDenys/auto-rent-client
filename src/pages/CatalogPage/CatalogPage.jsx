@@ -6,11 +6,15 @@ const CatalogPage = () => {
     <>
       <h1>CatalogPage</h1>
       <ul className={css[`Car_list`]}>
-        {cars.map((car) => (
-          <li className={css[`Car_item`]} key={car.id}>
-            <CarCard car={car} />
-          </li>
-        ))}
+        {cars.map((car, i) => {
+          if (i < 12) {
+            return (
+              <li className={css[`Car_item`]} key={car.id}>
+                <CarCard car={car} />
+              </li>
+            );
+          }
+        })}
       </ul>
     </>
   );

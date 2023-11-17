@@ -1,0 +1,63 @@
+.car_thumb{
+  position: relative;
+  /* outline: 1px solid red; */
+  border-radius: 14px;
+    overflow: hidden;
+}
+.car_thumb::before {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(180deg,
+        rgba(18, 20, 23, 0.5) 0%,
+        rgba(18, 20, 23, 0) 100%);
+}
+
+.img{
+
+}
+.car_myp{
+  color: #3470FF;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.car_myp span  {
+  color: #121417;
+}
+
+.list{
+  padding-right: 6px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item{
+  color: #121417;
+  opacity: 50%;
+  font-size: 12px;
+  line-height: 18px;
+}
+.item:not(:last-child) {
+  padding-right: 6px;
+  padding-left: 6px;
+  border-right: 1px solid rgba(18, 20, 23, 0.1);
+}
+.item:first-child{
+  padding-left: 0;
+}
+.button{
+  width: 100%;
+  background: #3470FF;
+  padding: 10px 0;
+  border-radius: 12px;
+  color: #FFFFFF;
+  transform: var(--transit);
+}
+.button:hover{
+  background: #0B44CD
+}

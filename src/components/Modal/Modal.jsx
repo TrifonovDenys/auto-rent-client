@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import css from "../CarCard/"
+import css from "./Hi.module.css"
 import { createPortal } from 'react-dom';
 import { closeModal } from '../../redux/car/modalSlice';
 import CrossIcon from "./component/CrossIcon"

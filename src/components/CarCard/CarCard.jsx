@@ -1,10 +1,18 @@
 import carImg from './images.jpg';
 import css from './CarCard.module.css';
 import FavoriteSvg from './FavoriteSvg/FavoriteSvg';
+import { useDispatch, useSelector } from 'react-redux';
+import { getModal } from '../../redux/cars/selectors';
+import { openModal } from '../../redux/cars/modalSlice';
 
 const CarCard = ({ car }) => {
-    console.log(car.photoLink);
-
+    // console.log(car.photoLink);
+    const isOpen = useSelector(getModal)
+    const dispatch = useDispatch()
+    console.log(isOpen);
+    const hendleLearnMore = () => {
+        dispatch(openModal())
+    } 
     return (
         <>
             <div className={css.car_thumb}>
@@ -22,15 +30,7 @@ const CarCard = ({ car }) => {
                         <span>{car.rentalPrice}</span>
                     </p>
                 </div>
-                {/* <ul className={css.list}>
-          <li className={css.item}>{car.address.split(",")[1]}</li>
-          <li className={css.item}>{car.address.split(",")[2]}</li>
-          <li className={css.item}>{car.rentalCompany}</li>
-          <li className={css.item}>{car.type}</li>
-          <li className={css.item}>{car.model}</li>
-          <li className={css.item}>{car.id}</li>
-          <li className={css.item}>{car.functionalities[2]}</li>
-        </ul> */}
+
                 <p className={css.support_text}>
                     {car.address.split(',')[1]}
                     <span></span>
@@ -48,7 +48,7 @@ const CarCard = ({ car }) => {
                 </p>
             </div>
             <div>
-                <button className={css.button} type='button'>
+                <button className={css.button} type='button' onClick={hendleLearnMore}>
                     Learn More
                 </button>
             </div>

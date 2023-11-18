@@ -1,44 +1,45 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import css from "./Filter.module.css"
 
 const Filter = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.currentTarget);
+        
+        console.dir(e.target.brand.value);
+        console.dir(e.target.price.value);
     };
     return (
-        <Formik initialValues={{ brand: '', price: '' }}>
-            <Form onSubmit={handleSubmit}>
-                <label htmlFor='brand'>Car brand</label>
-                <Field as='select' name='brand' value={brand}>
+        <div className='w-full flex justify-center items-center pt-[150px] '>
+            <Formik initialValues={{ brand: '', price: '' }}>
+            <Form onSubmit={handleSubmit} className='flex items-end gap-[18px]'>
+                <div className='flex flex-col'>
+                <label htmlFor='brand' className={css.lable}>Car brand</label>
+                <Field as='select' name='brand' id='brand' className={css.input}>
                     <option value='' selected disabled hidden>
-                        Enter the text
+                    Enter the text
                     </option>
-                    <option value='red'>Red</option>
-                    <option value='green'>Green</option>
-                    <option value='blue'>Blue</option>
-                    {/* {brand.map((el) => (
-                        <option value={el}>{el}</option>
-                    ))} */}
+                    {['red', "green", 'blue'].map((el, idx) => (
+                        <option key={idx} value={el}>{el}</option>
+                    ))} 
                 </Field>
+                </div>
 
-                <label htmlFor='price'>Price/ 1 hour</label>
-                <Field as='select' name='price' value={price}>
+                <div className='flex flex-col'>
+                <label htmlFor='price' className={css.lable}>Price/ 1 hour</label>
+                <Field as='select' name='price' id='price' className={css.input}>
                     <option value='' selected disabled hidden>
                         To $
                     </option>
-                    <option value='30'>30</option>
-                    <option value='40'>40</option>
-                    <option value='50'>50</option>
-                    {/* {price.map((el) => (
-                        <option value={el}>{el}</option>
-                    ))} */}
-                </Field>
 
-                <label htmlFor='email'>Email</label>
-                <Field id='email' name='email' placeholder='jane@acme.com' type='email' />
-                <button type='submit'>Submit</button>
+                    {['30', "40", '50'].map((el, idx) => (
+                        <option key={idx} value={el}>{el}</option>
+                    ))} 
+                </Field>
+                </div>
+                <button type='submit' className={css.button}>Search</button>
             </Form>
         </Formik>
+        </div>
     );
 };
 

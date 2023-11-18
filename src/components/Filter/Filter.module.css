@@ -1,0 +1,26 @@
+.lable{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color:#8A8A89;
+}
+
+.button{
+    border-radius: 12px;
+    padding: 14px 44px;
+    background-color: #3470FF;
+    color:white;
+}
+.button:hover{
+    background-color: #0B44CD;
+}
+
+.input{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    border-radius: 14px;
+    color: #121417;
+    background-color: #F7F7FB;
+    padding: 14px 18px;
+}

@@ -1,10 +1,8 @@
 import { useDispatch } from 'react-redux';
 import css from "./Hi.module.css"
-import { createPortal } from 'react-dom';
-import { closeModal } from '../../redux/car/modalSlice';
+import { closeModal } from '../../redux/cars/modalSlice';
 import CrossIcon from "./component/CrossIcon"
 
-const modalRoot = document.querySelector('#modal-root');
 const Modal = () => {
   const dispatch = useDispatch();
 
@@ -14,8 +12,15 @@ const Modal = () => {
     }
   };
 
-  return createPortal(
-    <div className={css.Modal_backdrop} onClick={hendleCloseModal}>
+  return(
+    <div className={css.Modal_backdrop} onClick={hendleCloseModal} style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: "rgba(0,0,0,0.5)",
+    }}>
       <div className={css.Modal_content}>
         <div className='absolute top-4 right-4'>
           <button
@@ -28,8 +33,7 @@ const Modal = () => {
           </button>
         </div>
       </div>
-    </div>,
-    modalRoot
+    </div>
   );
 };
 

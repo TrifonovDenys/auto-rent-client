@@ -2,9 +2,11 @@ import CarCard from '../../components/CarCard/CarCard';
 import cars from '../../advertsCars.json';
 import css from './CatalogPage.module.css';
 import Filter from '../../components/Filter/Filter';
+import Modal from '../../components/Modal/Modal';
 const CatalogPage = () => {
     return (
         <>
+        <Modal/>
             <Filter />
             <ul className={css[`Car_list`]}>
                 {cars.map((car, i) => {

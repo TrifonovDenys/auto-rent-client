@@ -23,12 +23,12 @@
 .svg{
   position: absolute;
   padding: 0;
-  z-index: 99;
   color: transparent;
   top: 14px;
   right: 14px;
   transition: color var(--transit);
-
+  width: 18px;
+  height: 18px;
 }
 .svg:hover, .svg:focus{
   outline: none;

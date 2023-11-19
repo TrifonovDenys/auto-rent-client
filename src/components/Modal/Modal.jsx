@@ -1,8 +1,11 @@
 import { useDispatch } from 'react-redux';
-import css from "./Hi.module.css"
+import css from "./Modal.module.css"
 import { closeModal } from '../../redux/cars/modalSlice';
 import CrossIcon from "./component/CrossIcon"
+import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
 
+const modalRoot = document.querySelector('#modal-root');
 const Modal = () => {
   const dispatch = useDispatch();
 
@@ -12,15 +15,20 @@ const Modal = () => {
     }
   };
 
-  return(
-    <div className={css.Modal_backdrop} onClick={hendleCloseModal} style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100vw",
-      height: "100vh",
-      backgroundColor: "rgba(0,0,0,0.5)",
-    }}>
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        dispatch(closeModal());
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [dispatch]);
+
+  return createPortal(
+    <div className={css.Modal_backdrop} onClick={hendleCloseModal}>
       <div className={css.Modal_content}>
         <div className='absolute top-4 right-4'>
           <button
@@ -33,7 +41,8 @@ const Modal = () => {
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    modalRoot
   );
 };
 

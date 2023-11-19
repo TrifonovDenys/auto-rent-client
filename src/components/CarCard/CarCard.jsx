@@ -9,7 +9,7 @@ const CarCard = ({ car }) => {
     // console.log(car.photoLink);
     const isOpen = useSelector(getModal)
     const dispatch = useDispatch()
-    console.log(isOpen);
+    // console.log(isOpen);
     const hendleLearnMore = () => {
         dispatch(openModal())
     } 

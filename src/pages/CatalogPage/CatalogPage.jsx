@@ -2,11 +2,15 @@ import CarCard from '../../components/CarCard/CarCard';
 import cars from '../../advertsCars.json';
 import css from './CatalogPage.module.css';
 import Filter from '../../components/Filter/Filter';
+import { getModal } from '../../redux/cars/selectors';
+import { useSelector } from 'react-redux';
 import Modal from '../../components/Modal/Modal';
 const CatalogPage = () => {
+    const isOpen = useSelector(getModal)
+    console.log(isOpen);
     return (
         <>
-        <Modal/>
+        {isOpen && <Modal />}
             <Filter />
             <ul className={css[`Car_list`]}>
                 {cars.map((car, i) => {

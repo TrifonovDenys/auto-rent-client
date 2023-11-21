@@ -1,13 +1,16 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import css from "./Modal.module.css"
 import { closeModal } from '../../redux/cars/modalSlice';
 import CrossIcon from "./component/CrossIcon"
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
+import { getCar } from '../../redux/cars/selectors';
+import carImg from './../CarCard/images.jpg';
 
 const modalRoot = document.querySelector('#modal-root');
 const Modal = () => {
   const dispatch = useDispatch();
+  const car = useSelector(getCar)
 
   const hendleCloseModal = e => {
     if (e.target === e.currentTarget) {
@@ -40,6 +43,10 @@ const Modal = () => {
             <CrossIcon />
           </button>
         </div>
+        <div>
+          <img src={!!car.photoLink ? car.photoLink : carImg} alt={car.model} loading='lazy' />
+        </div>
+
       </div>
     </div>,
     modalRoot

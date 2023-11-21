@@ -6,12 +6,10 @@ import { getModal } from '../../redux/cars/selectors';
 import { openModal } from '../../redux/cars/modalSlice';
 
 const CarCard = ({ car }) => {
-    // console.log(car.photoLink);
     const isOpen = useSelector(getModal)
     const dispatch = useDispatch()
-    // console.log(isOpen);
     const hendleLearnMore = () => {
-        dispatch(openModal())
+        dispatch(openModal(car))
     } 
     return (
         <>

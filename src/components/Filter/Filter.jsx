@@ -1,13 +1,17 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import css from "./Filter.module.css"
+import { setBrandFilter } from '../../redux/cars/filterSlice';
+import { useDispatch } from 'react-redux';
+import { brandDropdown } from './brand';
 
 const Filter = () => {
+    const dispatch = useDispatch()
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        console.dir(e.target.brand.value);
-        console.dir(e.target.price.value);
+        dispatch(setBrandFilter(e.target.brand.value))
+        // console.dir(e.target.price.value);
     };
+    
     return (
         <div className='w-full flex justify-center items-center pt-[150px] '>
             <Formik initialValues={{ brand: '', price: '' }}>
@@ -18,7 +22,7 @@ const Filter = () => {
                     <option value='' selected disabled hidden>
                     Enter the text
                     </option>
-                    {['red', "green", 'blue'].map((el, idx) => (
+                    {brandDropdown.map((el, idx) => (
                         <option key={idx} value={el}>{el}</option>
                     ))} 
                 </Field>

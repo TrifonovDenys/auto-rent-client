@@ -6,11 +6,11 @@ const filterSlice = createSlice({
         filter:""
     },
     reducers:{
-        filterCar(state, action){
+        setBrandFilter(state, action){
             state.filter = action.payload
         }
     }
 })
 
-export const filterCar = filterSlice.actions
+export const {setBrandFilter} = filterSlice.actions
 export const filterReducer = filterSlice.reducer;

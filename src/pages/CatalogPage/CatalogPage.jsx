@@ -34,3 +34,6 @@ const CatalogPage = () => {
 };
 
 export default CatalogPage;
+
+
+// https://6560f92b83aba11d99d1c48f.mockapi.io/:endpoint

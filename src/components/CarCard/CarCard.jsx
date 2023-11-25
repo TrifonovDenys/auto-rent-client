@@ -21,7 +21,7 @@ const CarCard = ({ car }) => {
   const handleAdd = () => {
     isAdd(!add);
 
-    favoritesCar(dispatch(car.id));
+    dispatch(favoritesCar(car.id));
 
     // const arr = favorites.reduce((acc, el) => {
     //   const index = favorites.indexOf(el);

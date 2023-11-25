@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import css from "./Filter.module.css"
-import { setBrandFilter } from '../../redux/cars/filterSlice';
+import { setBrandFilter, setPriceFilter } from '../../redux/cars/filterSlice';
 import { useDispatch } from 'react-redux';
 import { brandDropdown } from './brand';
 
@@ -9,7 +9,8 @@ const Filter = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(setBrandFilter(e.target.brand.value))
-        // console.dir(e.target.price.value);
+        dispatch(setPriceFilter(e.target.price.value))
+       
     };
     
     return (

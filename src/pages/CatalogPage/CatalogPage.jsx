@@ -2,15 +2,25 @@ import CarCard from '../../components/CarCard/CarCard';
 import cars from '../../advertsCars.json';
 import css from './CatalogPage.module.css';
 import Filter from '../../components/Filter/Filter';
-import { getFilter, getModal } from '../../redux/cars/selectors';
+import { getBrandFilter, getPriceFilter, getModal } from '../../redux/cars/selectors';
 import { useSelector } from 'react-redux';
 import Modal from '../../components/Modal/Modal';
+
 const CatalogPage = () => {
 
     const isOpen = useSelector(getModal)
-    const brandF = useSelector(getFilter)
-    console.log(brandF);
-    const filteredCar = cars.filter(el=>el.make.includes(brandF))
+    const brandF = useSelector(getBrandFilter)
+    const priceF = useSelector(getPriceFilter)
+
+    let filteredCar = cars
+    if (brandF){
+        filteredCar = filteredCar.filter(el=>el.make.includes(brandF))
+    }
+    if(priceF){
+        filteredCar = filteredCar.filter(el=>el.rentalPrice === "$" + priceF)
+    }
+    console.log(filteredCar);
+    // filteredCar = cars.filter(el=>el.make.includes(brandF) && el.rentalPrice.includes(priceF))
     return (
         <>
         {isOpen && <Modal />}

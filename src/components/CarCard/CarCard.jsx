@@ -4,49 +4,36 @@ import FavoriteSvg from './FavoriteSvg/FavoriteSvg';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/cars/modalSlice';
 import { getFavorites } from '../../redux/cars/selectors';
-import { useState } from 'react';
-import { favoritesCar } from '../../redux/cars/favoritesSlice';
+import { faviritesAdd, faviritesDel } from '../../redux/cars/favoritesSlice';
 
 const CarCard = ({ car }) => {
   const dispatch = useDispatch();
 
   const favorites = useSelector(getFavorites);
-  console.log(favorites);
+
   const hendleLearnMore = () => {
     dispatch(openModal(car));
   };
 
-  const [add, isAdd] = useState(false);
+  const checkFavorit = favorites.includes(car.id) 
 
   const handleAdd = () => {
-    isAdd(!add);
-
-    dispatch(favoritesCar(car.id));
-
-    // const arr = favorites.reduce((acc, el) => {
-    //   const index = favorites.indexOf(el);
-    //   if (index === -1) {
-    //     acc.push(el);
-    //   } else {
-    //     acc.splice(index, 1);
-    //   }
-    //   return acc;
-    // }, []);
-    // console.log(arr);
-    //
+    if(checkFavorit){dispatch(faviritesDel(car.id))}
+    else dispatch(faviritesAdd(car.id))  
   };
+
   return (
     <>
       <div className={css.car_thumb}>
         <img className={css.img} src={!!car.photoLink ? car.photoLink : carImg} alt={car.model} loading='lazy' />
         <button type='button' className={css.svg} onClick={handleAdd}>
-          <FavoriteSvg add={add} />
+          <FavoriteSvg add={checkFavorit} />
         </button>
       </div>
       <div className='mb-[28px] mt-[14px]'>
         <div className='flex mb-2'>
           <p className={css.car_myp}>
-            <span>{car.make}</span> {car.model},<span>{car.year}</span>
+            <span>{car.make}</span> {car.model}, <span>{car.year}</span>
           </p>
           <p className={`${css[`car_myp`]} ${css[`price`]}`}>
             <span>{car.rentalPrice}</span>

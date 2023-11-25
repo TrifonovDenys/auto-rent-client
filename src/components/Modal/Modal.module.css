@@ -1,20 +1,97 @@
-.Modal_backdrop{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.5);
-  }
-  .Modal_content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-height: 200px;
-    width: 541px;
-    max-width: 95%;
-    padding: 40px;
-    background-color: #fff;
-    border-radius: 24px;
-  }
+.Modal_backdrop {
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  opacity: 1;
+  transition: opacity var(--transit), visibility var(--transit);
+}
+
+.Modal_content{
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 200px;
+  width: 541px;
+  max-width: 95%;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 24px;
+}
+
+.car_myp {
+  color: #3470FF;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  height: 24px;
+  /* text-overflow: ellipsis; */
+  overflow: hidden;
+}
+
+.car_myp span {
+  color: #121417;
+}
+
+.support_text {
+  color: #121417;
+  opacity: 50%;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.support_text span {
+  border-right: 1px solid #12141732;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.accessories{
+  color: #121417;
+  opacity: 50%;
+  font-size: 12px;
+  line-height: 18px;
+
+}
+
+.accessories:not(:last-child) {
+  padding-right: 6px;
+  border-right: 1px solid #12141732;
+  margin-right: 6px;
+}
+
+.condition_block{
+  border-radius: 35px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #363535;
+  padding: 7px 14px;
+  background: #F9F9F9;
+}
+.condition_block span {
+  color: #3470FF;
+}
+
+.description{
+  font-size: 14px;
+  line-height: 20px;
+}
+.button {
+  background: #3470FF;
+  padding: 12px 50px;
+  border-radius: 12px;
+  color: #FFFFFF;
+  transform: var(--transit);
+}
+
+.button:hover,
+.button:focus {
+  background: #0B44CD;
+}

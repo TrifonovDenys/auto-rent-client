@@ -1,16 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { favoritesReducer  } from './cars/favoritesSlice';
+import { favoritesReducer } from './cars/favoritesSlice';
 import { filterReducer } from './cars/filterSlice';
 import { modalReducer } from './cars/modalSlice';
 
@@ -25,7 +16,7 @@ export const store = configureStore({
     filter: filterReducer,
     modal: modalReducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

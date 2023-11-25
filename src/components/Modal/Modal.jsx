@@ -1,18 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
-import css from "./Modal.module.css"
+import css from './Modal.module.css';
 import { closeModal } from '../../redux/cars/modalSlice';
-import CrossIcon from "./component/CrossIcon"
+import CrossIcon from './component/CrossIcon';
 import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
-import { getCar } from '../../redux/cars/selectors';
+import React, { useEffect } from 'react';
+import { getCar, getFavorites } from '../../redux/cars/selectors';
 import carImg from './../CarCard/images.jpg';
+import formatNumberWithCommas from './utils/miles';
 
 const modalRoot = document.querySelector('#modal-root');
 const Modal = () => {
   const dispatch = useDispatch();
-  const car = useSelector(getCar)
-
-  const hendleCloseModal = e => {
+  const car = useSelector(getCar);
+  const favorites = useSelector(getFavorites);
+  console.log(favorites);
+  const hendleCloseModal = (e) => {
     if (e.target === e.currentTarget) {
       dispatch(closeModal());
     }
@@ -35,7 +37,7 @@ const Modal = () => {
       <div className={css.Modal_content}>
         <div className='absolute top-4 right-4'>
           <button
-            className="transition-all rounded-md border-solid border-2 border-gray-600 bg-grey-600 py-1 px-1 hover:bg-gray-600 text-black hover:text-white"
+            className='transition-all rounded-md bg-transparent py-1 px-1 text-black '
             onClick={() => {
               dispatch(closeModal());
             }}
@@ -46,10 +48,74 @@ const Modal = () => {
         <div>
           <img src={!!car.photoLink ? car.photoLink : carImg} alt={car.model} loading='lazy' />
         </div>
+        <div className='mb-[14px] mt-[14px]'>
+          <div className='flex mb-2'>
+            <p className={css.car_myp}>
+              <span>{car.make}</span> {car.model},<span>{car.year}</span>
+            </p>
+          </div>
+          <p className={css.support_text}>
+            {car.address.split(',')[1]}
+            <span></span>
+            {car.address.split(',')[2]}
+            <span></span>
+            Id: {car.id}
+            <span></span>
+            Year: {car.year}
+            <span></span>
+            Type: {car.type} <br />
+          </p>
+          <p className={css.support_text}>
+            Fuel Consumption: {car.fuelConsumption}
+            <span></span>
+            Engine Size: {car.engineSize}
+          </p>
+        </div>
+        <div className='mb-[24px]'>
+          <p className={css.description}>{car.description}</p>
+        </div>
+        <div className='mb-[24px]'>
+          <p className={`${css['description']} mb-[8px]`}>Accessories and functionalities:</p>
+          <div className='flex flex-wrap'>
+            {car.accessories.map((el, index) => (
+              <React.Fragment key={index}>
+                <p className={css.accessories}>{el}</p>
+              </React.Fragment>
+            ))}
 
+            {car.functionalities.map((el, index) => (
+              <React.Fragment key={index}>
+                <p className={css.accessories}>{el}</p>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+
+        <div className='mb-[24px]'>
+          <p className={`${css['description']} mb-[8px]`}>Rental Conditions: </p>
+
+          <div className='flex flex-wrap gap-[8px]'>
+            <p className={css.condition_block}>
+              Minimum age : <span>25</span>
+            </p>
+            <p className={css.condition_block}>Valid driver’s license</p>
+            <p className={css.condition_block}>Security deposite required </p>
+            <p className={css.condition_block}>
+              Mileage: <span>{formatNumberWithCommas(car.mileage)}</span>
+            </p>
+            <p className={css.condition_block}>
+              Price: <span>{car.rentalPrice}</span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <button className={css.button} type='button'>
+            Rental car
+          </button>
+        </div>
       </div>
     </div>,
-    modalRoot
+    modalRoot,
   );
 };
 

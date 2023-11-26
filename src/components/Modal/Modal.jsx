@@ -35,9 +35,9 @@ const Modal = () => {
   return createPortal(
     <div className={css.Modal_backdrop} onClick={hendleCloseModal}>
       <div className={css.Modal_content}>
-        <div className='absolute top-4 right-4'>
+        <div className='absolute top-4 right-4 py-0 px-0'>
           <button
-            className='transition-all rounded-md bg-transparent py-1 px-1 text-black '
+            className='transition-all rounded-md bg-transparent py-0 px-0 text-black'
             onClick={() => {
               dispatch(closeModal());
             }}
@@ -109,9 +109,9 @@ const Modal = () => {
           </div>
         </div>
         <div>
-          <button className={css.button} type='button'>
+          <a href="tel:+380730000000" className={css.button}>
             Rental car
-          </button>
+          </a>
         </div>
       </div>
     </div>,

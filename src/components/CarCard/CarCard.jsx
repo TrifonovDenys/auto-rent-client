@@ -15,13 +15,14 @@ const CarCard = ({ car }) => {
     dispatch(openModal(car));
   };
 
-  const checkFavorit = favorites.includes(car.id) 
+  const checkFavorit = favorites.some((favoriteCar) => favoriteCar.id === car.id);
 
   const handleAdd = () => {
-    if(checkFavorit){dispatch(faviritesDel(car.id))}
-    else dispatch(faviritesAdd(car.id))  
+    if(checkFavorit){dispatch(faviritesDel(car))}
+    else dispatch(faviritesAdd(car))  
   };
 
+  console.log(favorites);
   return (
     <>
       <div className={css.car_thumb}>

@@ -4,19 +4,17 @@ import { getFavorites, getModal } from '../../redux/cars/selectors';
 import { useSelector } from 'react-redux';
 import Modal from '../../components/Modal/Modal';
 import { NavLink } from 'react-router-dom';
-import { useGetCarsQuery } from '../../redux/api/carsApi';
+
 
 const FavoritesPage = () => {
-
     const isOpen = useSelector(getModal)
     const favorite = useSelector(getFavorites)
 
-    const filteredCar = useGetCarsQuery.filter(el=>favorite.includes(el.id))
     return (
         <>
         {isOpen && <Modal />}
             <ul className={css[`Car_list`]}>
-                {filteredCar.length > 0 ? filteredCar.map((car) => {
+                {favorite.length > 0 ? favorite.map((car) => {
                     return (
                         <li className={css[`Car_item`]} key={car.id}>
                             <CarCard car={car} />
@@ -38,11 +36,6 @@ const FavoritesPage = () => {
                     </div>
                 )}
             </ul>
-            {filteredCar.length > 12 ? <div className=' w-full flex justify-center pb-[150px]'>
-                <button type='button' className='text-[#3470FF] hover:text-[#0B44CD] underline  border-none'>
-                    Load more
-                </button>
-            </div> : <></>}
         </>
     );
 };

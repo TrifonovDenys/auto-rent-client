@@ -1,22 +1,3 @@
-// import { createApi } from '@reduxjs/toolkit/query/react';
-// import axiosBaseQuery from './axiosBaseQuery';
-
-// const carsAPI = createApi({
-//   reducerPath: 'cars',
-//   baseQuery: axiosBaseQuery(),
-//   endpoints: builder => ({
-//     getCars: builder.query({
-//       query: () => ({ url: '/cars' }),
-//     })
-//   }),
-// });
-
-// export default carsAPI;
-// export const {
-//   useGetCarsQuery,
-// } = carsAPI;
-
-
 import { createApi } from '@reduxjs/toolkit/query/react';
 import axiosBaseQuery from './axiosBaseQuery';
 

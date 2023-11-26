@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import { favoritesReducer } from './cars/favoritesSlice';
 import { filterReducer } from './cars/filterSlice';
 import { modalReducer } from './cars/modalSlice';
+import carsApi from './api/carsApi';
 
 const favoritesPersistConfig = {
   key: 'favorites',
@@ -15,13 +16,15 @@ export const store = configureStore({
     favorites: persistReducer(favoritesPersistConfig, favoritesReducer),
     filter: filterReducer,
     modal: modalReducer,
+    [carsApi.reducerPath]: carsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    })
+    .concat(carsApi.middleware),
   devTools: process.env.NODE_ENV === 'development',
 });
 

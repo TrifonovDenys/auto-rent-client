@@ -1,16 +1,17 @@
 import CarCard from '../../components/CarCard/CarCard';
-import cars from '../../advertsCars.json';
 import css from '../CatalogPage/CatalogPage.module.css';
 import { getFavorites, getModal } from '../../redux/cars/selectors';
 import { useSelector } from 'react-redux';
 import Modal from '../../components/Modal/Modal';
 import { NavLink } from 'react-router-dom';
+import { useGetCarsQuery } from '../../redux/api/carsApi';
+
 const FavoritesPage = () => {
 
     const isOpen = useSelector(getModal)
     const favorite = useSelector(getFavorites)
 
-    const filteredCar = cars.filter(el=>favorite.includes(el.id))
+    const filteredCar = useGetCarsQuery.filter(el=>favorite.includes(el.id))
     return (
         <>
         {isOpen && <Modal />}

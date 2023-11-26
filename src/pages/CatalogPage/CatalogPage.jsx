@@ -1,26 +1,53 @@
 import CarCard from '../../components/CarCard/CarCard';
-import cars from '../../advertsCars.json';
 import css from './CatalogPage.module.css';
 import Filter from '../../components/Filter/Filter';
 import { getBrandFilter, getPriceFilter, getModal } from '../../redux/cars/selectors';
 import { useSelector } from 'react-redux';
 import Modal from '../../components/Modal/Modal';
+import { useGetCarsQuery } from '../../redux/api/carsApi';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 
 const CatalogPage = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [favorites, setFavorites] = useState([]);
+    const [lCount, setLCount] = useState(12);
+    
+
+    const params = useMemo(
+        () => Object.fromEntries([...searchParams]),
+        [searchParams]
+      );
+
+    const { limit, totalHits = 32 } = params;
+    const {data: fetchedCars} = useGetCarsQuery({ limit, totalHits });
+
+    useEffect(() => {
+        if (!fetchedCars) {
+          return;
+        }
+
+        setSearchParams({
+          ...params,
+          limit: lCount,
+          totalHits
+        });
+    
+        setFavorites(fetchedCars);
+      }, [fetchedCars, lCount, params, setSearchParams]);
 
     const isOpen = useSelector(getModal)
     const brandF = useSelector(getBrandFilter)
     const priceF = useSelector(getPriceFilter)
 
-    let filteredCar = cars
+    let filteredCar = favorites
     if (brandF){
         filteredCar = filteredCar.filter(el=>el.make.includes(brandF))
     }
     if(priceF){
         filteredCar = filteredCar.filter(el=>el.rentalPrice === "$" + priceF)
     }
-    console.log(filteredCar);
-    // filteredCar = cars.filter(el=>el.make.includes(brandF) && el.rentalPrice.includes(priceF))
+    const lm = totalHits / lCount > 1
     return (
         <>
         {isOpen && <Modal />}
@@ -34,11 +61,16 @@ const CatalogPage = () => {
                     );
                 }): <p>No cars</p>}
             </ul>
-            {filteredCar.length > 12 ? <div className=' w-full flex justify-center pb-[150px]'>
-                <button type='button' className='text-[#3470FF] hover:text-[#0B44CD] underline  border-none'>
+            {lm ? 
+            <div className=' w-full flex justify-center pb-[150px]'>
+                <button onClick={()=> {setLCount(limit=> {
+                    if(limit + 12 > totalHits){
+                        return totalHits
+                    }
+                    return limit + 12})}} type='button' className='text-[#3470FF] hover:text-[#0B44CD] underline  border-none'>
                     Load more
                 </button>
-            </div> : <></>}
+            </div> : <></>} 
         </>
     );
 };
@@ -46,4 +78,3 @@ const CatalogPage = () => {
 export default CatalogPage;
 
 
-// https://6560f92b83aba11d99d1c48f.mockapi.io/:endpoint

@@ -3,6 +3,7 @@
     font-size: 14px;
     line-height: 18px;
     color:#8A8A89;
+    margin-bottom: 8px;
 }
 
 .button{
@@ -23,4 +24,7 @@
     color: #121417;
     background-color: #F7F7FB;
     padding: 14px 18px;
+}
+.option li{
+    padding: 122px;
 }

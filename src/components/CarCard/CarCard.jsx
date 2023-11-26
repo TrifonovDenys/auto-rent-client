@@ -22,7 +22,6 @@ const CarCard = ({ car }) => {
     else dispatch(faviritesAdd(car))  
   };
 
-  console.log(favorites);
   return (
     <>
       <div className={css.car_thumb}>

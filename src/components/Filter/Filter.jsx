@@ -20,11 +20,11 @@ const Filter = () => {
                 <div className='flex flex-col'>
                 <label htmlFor='brand' className={css.lable}>Car brand</label>
                 <Field as='select' name='brand' id='brand' className={css.input}>
-                    <option value='' selected disabled hidden>
-                    Enter the text
+                    <option className='option' value="" disabled hidden>
+                    Enter the text{" "}
                     </option>
                     {brandDropdown.map((el, idx) => (
-                        <option key={idx} value={el}>{el}</option>
+                        <option className='option' key={idx} value={el}>{el}</option>
                     ))} 
                 </Field>
                 </div>
@@ -32,8 +32,8 @@ const Filter = () => {
                 <div className='flex flex-col'>
                 <label htmlFor='price' className={css.lable}>Price/ 1 hour</label>
                 <Field as='select' name='price' id='price' className={css.input}>
-                    <option value='' selected disabled hidden>
-                        To $
+                    <option value="" disabled hidden>
+                        To ${" "}
                     </option>
 
                     {['30', "40", '50'].map((el, idx) => (

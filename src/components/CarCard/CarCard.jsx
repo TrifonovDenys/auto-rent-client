@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/cars/modalSlice';
 import { getFavorites } from '../../redux/cars/selectors';
 import { faviritesAdd, faviritesDel } from '../../redux/cars/favoritesSlice';
+import toast from 'react-hot-toast';
 
 const CarCard = ({ car }) => {
   const dispatch = useDispatch();
@@ -18,8 +19,13 @@ const CarCard = ({ car }) => {
   const checkFavorit = favorites.some((favoriteCar) => favoriteCar.id === car.id);
 
   const handleAdd = () => {
-    if(checkFavorit){dispatch(faviritesDel(car))}
-    else dispatch(faviritesAdd(car))  
+    if (checkFavorit) {
+      dispatch(faviritesDel(car));
+      toast.success('removed from Favorites');
+    } else {
+      dispatch(faviritesAdd(car));
+      toast.success('added to Favorites');
+    }
   };
 
   return (

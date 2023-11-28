@@ -25,6 +25,12 @@
     background-color: #F7F7FB;
     padding: 14px 18px;
 }
-.option li{
-    padding: 122px;
+
+option {
+    border-radius: 14px;
+    padding: 14px 18px;
+}
+.select{
+    background: #F7F7FB;
+    width: 200px;
 }

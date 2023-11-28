@@ -1,6 +1,6 @@
-import React from "react";
+
 import Navigation from "./Navigation/Navigation";
-import { NavLink, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import LogoSvg from "./LogoSvg/LogoSvg";
 
 const Header = () => {

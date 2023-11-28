@@ -4,7 +4,7 @@ import { closeModal } from '../../redux/cars/modalSlice';
 import CrossIcon from './component/CrossIcon';
 import { createPortal } from 'react-dom';
 import React, { useEffect } from 'react';
-import { getCar, getFavorites } from '../../redux/cars/selectors';
+import { getCar } from '../../redux/cars/selectors';
 import carImg from './../CarCard/images.jpg';
 import formatNumberWithCommas from './utils/miles';
 
@@ -12,8 +12,7 @@ const modalRoot = document.querySelector('#modal-root');
 const Modal = () => {
   const dispatch = useDispatch();
   const car = useSelector(getCar);
-  const favorites = useSelector(getFavorites);
-  console.log(favorites);
+
   const hendleCloseModal = (e) => {
     if (e.target === e.currentTarget) {
       dispatch(closeModal());
@@ -46,7 +45,7 @@ const Modal = () => {
           </button>
         </div>
         <div>
-          <img src={!!car.photoLink ? car.photoLink : carImg} alt={car.model} loading='lazy' />
+          <img src={!car.photoLink ?  carImg: car.photoLink} alt={car.model} loading='lazy' />
         </div>
         <div className='mb-[14px] mt-[14px]'>
           <div className='flex mb-2'>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import carImg from './images.jpg';
 import css from './CarCard.module.css';
 import FavoriteSvg from './FavoriteSvg/FavoriteSvg';
@@ -8,6 +9,7 @@ import { faviritesAdd, faviritesDel } from '../../redux/cars/favoritesSlice';
 import toast from 'react-hot-toast';
 
 const CarCard = ({ car }) => {
+  const {id, photoLink, model, make, year ,rentalPrice,address,rentalCompany,type,functionalities} = car
   const dispatch = useDispatch();
 
   const favorites = useSelector(getFavorites);
@@ -16,7 +18,7 @@ const CarCard = ({ car }) => {
     dispatch(openModal(car));
   };
 
-  const checkFavorit = favorites.some((favoriteCar) => favoriteCar.id === car.id);
+  const checkFavorit = favorites.some((favoriteCar) => favoriteCar.id === id);
 
   const handleAdd = () => {
     if (checkFavorit) {
@@ -31,7 +33,7 @@ const CarCard = ({ car }) => {
   return (
     <>
       <div className={css.car_thumb}>
-        <img className={css.img} src={!!car.photoLink ? car.photoLink : carImg} alt={car.model} loading='lazy' />
+        <img className={css.img} src={!photoLink ? carImg : photoLink} alt={model} loading='lazy' />
         <button type='button' className={css.svg} onClick={handleAdd}>
           <FavoriteSvg add={checkFavorit} />
         </button>
@@ -39,27 +41,27 @@ const CarCard = ({ car }) => {
       <div className='mb-[28px] mt-[14px]'>
         <div className='flex mb-2'>
           <p className={css.car_myp}>
-            <span>{car.make}</span> {car.model}, <span>{car.year}</span>
+            <span>{make}</span> {model}, <span>{year}</span>
           </p>
           <p className={`${css[`car_myp`]} ${css[`price`]}`}>
-            <span>{car.rentalPrice}</span>
+            <span>{rentalPrice}</span>
           </p>
         </div>
 
         <p className={css.support_text}>
-          {car.address.split(',')[1]}
+          {address.split(',')[1]}
           <span></span>
-          {car.address.split(',')[2]}
+          {address.split(',')[2]}
           <span></span>
-          {car.rentalCompany}
+          {rentalCompany}
           <span></span>
-          {car.type}
+          {type}
           <span></span>
-          {car.model}
+          {model}
           <span></span>
-          {car.id}
+          {id}
           <span></span>
-          {car.functionalities[2]}
+          {functionalities[2]}
         </p>
       </div>
       <div>
@@ -72,3 +74,18 @@ const CarCard = ({ car }) => {
 };
 
 export default CarCard;
+
+CarCard.propTypes = {
+  car: PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string,
+    photoLink: PropTypes.string,
+    model: PropTypes.string,
+    make: PropTypes.string,
+    year: PropTypes.number,
+    rentalPrice: PropTypes.string,
+    address: PropTypes.string,
+    rentalCompany: PropTypes.string,
+    functionalities: PropTypes.arrayOf(PropTypes.string),
+  }),
+};

@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import css from './Filter.module.css';
 import { setBrandFilter, setPriceFilter } from '../../redux/cars/filterSlice';
 import { useDispatch } from 'react-redux';

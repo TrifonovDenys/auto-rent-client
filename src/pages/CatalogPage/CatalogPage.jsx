@@ -43,7 +43,7 @@ const CatalogPage = () => {
     }
     setLoadMore(totalHits / limit > 1);
     setFavorites(fetchedCars);
-  }, [fetchedCars, lCount, params, setSearchParams, brandF, priceF, setLoadMore]);
+  }, [fetchedCars, lCount, params, setSearchParams, brandF, priceF, setLoadMore, totalHits, limit]);
 
   let filteredCar = favorites;
   if (brandF) {

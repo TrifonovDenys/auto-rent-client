@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const FavoriteSvg = ({ add }) => {
   return (
     <svg viewBox='0 0 18 18' fill={add ? '#0B44CD' : 'transparent'} xmlns='http://www.w3.org/2000/svg'>
@@ -14,3 +16,7 @@ const FavoriteSvg = ({ add }) => {
 };
 
 export default FavoriteSvg;
+
+FavoriteSvg.propTypes = {
+  add: PropTypes.bool.isRequired
+}
